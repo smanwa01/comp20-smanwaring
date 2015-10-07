@@ -4,6 +4,7 @@
 
 
 function init(){
+	//specify canvas
 	canvas = document.getElementById('game_canvas');
 	ctx = canvas.getContext('2d');
 
@@ -20,6 +21,12 @@ function init(){
 		ctx.drawImage(duck_1, 38, 120, 35, 35, 70, 65, 35, 35); 
 	}
 	duck_1.src = 'duckhunt_various_sheet.png';
+	
 	//load second duck
+	var duck_2 = new Image();
+	duck_2.onload = function(){
+		ctx.drawImage(duck_2, 125, 120, 40, 35, 130, 50, 35, 35); 
+	}
+	duck_2.src = 'duckhunt_various_sheet.png';
 }
 
