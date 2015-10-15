@@ -8,27 +8,26 @@
 			var map; 
 			function init() {
 				if (navigator.geolocation){
-					navigator.geolocation.getCurrentPosition(function (position) {
-						var my_lat = position.coords.lattitude; 
-						var my_lng = position.coords.longitude;
-
-						var currentPosition = {lat: my_lat, lng: my_lng};
-
-						map = new google.maps.Map(document.getElementById('map'), {
- 							center: currentPosition,
-							zoom: 8
-						});
+					navigator.geolocation.getCurrentPosition(function() {
+						my_lat = position.coords.lattitude; 
+						my_lng = position.coords.longitude;
+					)}; 
+					currentPosition = {lat: my_lat, lng: my_lng};
 				}
-
 
 				else {
 					alert("Sorry, geolocation is not supported on your browser.");
 				}
+
+				map = new google.maps.Map(document.getElementById('map'), {
+ 					center: currentPosition,
+					zoom: 8
+				});
 			}
 		</script> 
 	</head>
 
-	<body onload = "init()">
+	<body onload = init()>
 		<div id ="map"></div> 
 	</body>
 </html>
