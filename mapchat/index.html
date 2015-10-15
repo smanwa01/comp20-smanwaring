@@ -8,10 +8,10 @@
 			var map; 
 			function init() {
 				if (navigator.geolocation){
-					navigator.geolocation.getCurrentPosition(function() {
+					navigator.geolocation.getCurrentPosition(function()) {
 						my_lat = position.coords.lattitude; 
 						my_lng = position.coords.longitude;
-					)}; 
+					}; 
 					currentPosition = {lat: my_lat, lng: my_lng};
 				}
 
