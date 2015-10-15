@@ -7,6 +7,15 @@
 		<script>
 			var map; 
 			function init() {
+				if (navigator.geolocation){
+					navigator.geolocation.getCurrentPosition(function(position) {
+						lat = position.coords.lattitude; 
+						lng = position.coords.longitude; 
+					});
+				}
+				else {
+					alert("Sorry, geolocation is not supported on your browser.");
+				}
 				map = new google.maps.Map(document.getElementById('map'), {
     				center: {lat: -34.397, lng: 150.644}, zoom: 8 });
 			}
