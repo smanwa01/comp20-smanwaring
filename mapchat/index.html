@@ -12,7 +12,12 @@
 						var my_lat = position.coords.lattitude; 
 						var my_lng = position.coords.longitude;
 
-					map = new google.maps.Map(document.getElementById('map'), {center: {my_lat, my_lng}, zoom 8});
+						var currentPosition = {lat: my_lat, lng: my_lng};
+
+						map = new google.maps.Map(document.getElementById('map'), {
+ 							center: currentPosition,
+							zoom: 8
+						});
 				}
 
 
