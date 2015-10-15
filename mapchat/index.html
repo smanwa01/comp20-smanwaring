@@ -7,10 +7,11 @@
 		<script>
 			var map; 
 
-				function setCurrentLocation(lat, long){
-				my_lat = position.coords.lattitude; 
-				my_lng = position.coords.longitude;
-				return var currentPosition = {lat: my_lat, lng: my_lng};
+			function setCurrentLocation(lat, lng){
+				my_lat = lat; 
+				my_lng = lng;
+				var currentPosition = {lat: my_lat, lng: my_lng};
+				return currentPosition; 
 			}
 
 			function init() {
