@@ -5,8 +5,10 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script>
+			var map; 
 			function init() {
-				//somethings goes here...  
+				map = new google.maps.Map(document.getElementById('map'), {
+    				center: {lat: -34.397, lng: 150.644}, zoom: 8 });
 			}
 		</script> 
 	</head>
