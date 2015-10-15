@@ -8,11 +8,9 @@
 			var map; 
 			function init() {
 				if (navigator.geolocation){
-					navigator.geolocation.getCurrentPosition(function()) {
-						my_lat = position.coords.lattitude; 
-						my_lng = position.coords.longitude;
-					}; 
-					currentPosition = {lat: my_lat, lng: my_lng};
+					navigator.geolocation.getCurrentPosition(function(position) {
+ 						currentPosition = setCurentLocation(position.coords.latitude, position.coords.longitude);
+					});		
 				}
 
 				else {
@@ -23,6 +21,12 @@
  					center: currentPosition,
 					zoom: 8
 				});
+			}
+
+			function setCurrentLocation(lat, long){
+				my_lat = position.coords.lattitude; 
+				my_lng = position.coords.longitude;
+				return currentPosition = {lat: my_lat, lng: my_lng};
 			}
 		</script> 
 	</head>
