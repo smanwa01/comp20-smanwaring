@@ -6,6 +6,13 @@
 		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script>
 			var map; 
+
+				function setCurrentLocation(lat, long){
+				my_lat = position.coords.lattitude; 
+				my_lng = position.coords.longitude;
+				return var currentPosition = {lat: my_lat, lng: my_lng};
+			}
+
 			function init() {
 				if (navigator.geolocation){
 					navigator.geolocation.getCurrentPosition(function(position) {
@@ -21,12 +28,6 @@
  					center: currentPosition,
 					zoom: 8
 				});
-			}
-
-			function setCurrentLocation(lat, long){
-				my_lat = position.coords.lattitude; 
-				my_lng = position.coords.longitude;
-				return currentPosition = {lat: my_lat, lng: my_lng};
 			}
 		</script> 
 	</head>
