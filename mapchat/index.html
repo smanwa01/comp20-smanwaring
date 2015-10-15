@@ -12,10 +12,10 @@
 						var my_lat = position.coords.lattitude; 
 						var my_lng = position.coords.longitude;
 
-						mylocation = new google.maps.LatLng(my_lat, my_lng); 
-				
-						map = new google.maps.Map(document.getElementById('map'), {center: mylocation, zoom 8});
+					map = new google.maps.Map(document.getElementById('map'), {center: {my_lat, my_lng}, zoom 8});
 				}
+
+
 				else {
 					alert("Sorry, geolocation is not supported on your browser.");
 				}
