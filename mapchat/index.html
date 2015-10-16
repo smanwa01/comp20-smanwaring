@@ -11,7 +11,7 @@
 			var myLocation = new google.maps.LatLng(my_lat, my_lng); 
 			var locationMarker; 
 			var info; 
-			var xrh; 
+			var xhr; 
 
 			function init() {
 				map = new google.maps.Map(document.getElementById('map'), {
@@ -60,7 +60,7 @@
 			}
 
 			function parseData () {
-				xrh = new XMLHttpRequest(); 
+				xhr = new XMLHttpRequest(); 
 				var url = 'https://secret-about-box.herokuapp.com/sendLocation'; 
 
 				xhr.open("POST", url, true); 
