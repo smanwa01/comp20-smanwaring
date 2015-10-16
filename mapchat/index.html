@@ -65,8 +65,13 @@
 
 				xhr.open("POST", url, true); 
 				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-
 				xhr.send("login=LisaLytle&lat=YOUR_LATITUDE&lng=YOUR_LONGITUDE&message=YOUR_MESSAGE"); //?????
+
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && xhr.status == 200){
+
+					}
+				}
 			}
 		</script> 
 	</head>
