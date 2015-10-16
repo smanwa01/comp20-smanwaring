@@ -15,6 +15,7 @@
  					center: myLocation,
 					zoom: 8 }); 
 				getCurrentLocation(); 
+				showMap(); 
 			}
 
 			function getCurrentLocation(){
@@ -28,6 +29,11 @@
 				else {
 					alert("Sorry, geolocation is not supported on your browser.");
 				}
+			}
+
+			function showMap() {
+				myLocation = new google.maps.LatLng(my_lat, my_lng);
+				map.setCenter(myLocation); 
 			}
 
 		</script> 
