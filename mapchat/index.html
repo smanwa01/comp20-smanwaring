@@ -9,6 +9,7 @@
 			var my_lat = 0;
 			var my_lng = 0;
 			var myLocation = new google.maps.LatLng(my_lat, my_lng); 
+			var locationMarker; 
 
 			function init() {
 				map = new google.maps.Map(document.getElementById('map'), {
@@ -34,6 +35,12 @@
 			function showMap() {
 				myLocation = new google.maps.LatLng(my_lat, my_lng);
 				map.panTo(myLocation); 
+
+				locationMarker = new google.maps.Marker({
+					position: MyLocation,
+					map: map,
+					title: 'My Location'
+				});
 			}
 
 		</script> 
