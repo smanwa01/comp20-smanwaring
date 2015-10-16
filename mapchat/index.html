@@ -6,34 +6,34 @@
 		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script>
 			var map; 
-
-			function setCurrentLocation(lat, lng){
-				my_lat = lat; 
-				my_lng = lng;
-				var currentPosition = {lat: my_lat, lng: my_lng};
-				return currentPosition; 
-			}
+			var my_lat = 0;
+			var my_lng = 0;
+			var myLocation = new google.maps.LatLng(my_lat, my_lng); 
 
 			function init() {
+				map = new google.maps.Map(document.getElementById('map'), {
+ 					center: myLocation,
+					zoom: 8 )}; 
+				getCurrentLocation(); 
+			}
+
+			function getCurrentLocation(){
 				if (navigator.geolocation){
 					navigator.geolocation.getCurrentPosition(function(position) {
- 						currentPosition = setCurentLocation(position.coords.latitude, position.coords.longitude);
-					});		
+ 						my_lat = position.coords.latitude
+ 						my_lng = position.coords.longitude;
+					}); 	
 				}
 
 				else {
 					alert("Sorry, geolocation is not supported on your browser.");
 				}
-
-				map = new google.maps.Map(document.getElementById('map'), {
- 					center: currentPosition,
-					zoom: 8
-				});
 			}
+
 		</script> 
 	</head>
 
-	<body onload = init()>
+	<body onload ="init()">
 		<div id ="map"></div> 
 	</body>
 </html>
