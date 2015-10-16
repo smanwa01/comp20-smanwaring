@@ -11,12 +11,14 @@
 			var myLocation = new google.maps.LatLng(my_lat, my_lng); 
 			var locationMarker; 
 			var info; 
+			var xrh; 
 
 			function init() {
 				map = new google.maps.Map(document.getElementById('map'), {
  					center: myLocation,
 					zoom: 15 }); 
 				getCurrentLocation(); 
+				parseData(); 
 			}
 
 			function getCurrentLocation(){
@@ -57,6 +59,15 @@
 				});
 			}
 
+			function parseData () {
+				xrh = new XMLHttpRequest(); 
+				var url = 'https://secret-about-box.herokuapp.com/sendLocation'; 
+
+				xhr.open("POST", url, true); 
+				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+
+				xhr.send("login=LisaLytle&lat=YOUR_LATITUDE&lng=YOUR_LONGITUDE&message=YOUR_MESSAGE"); //?????
+			}
 		</script> 
 	</head>
 
