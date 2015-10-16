@@ -10,6 +10,7 @@
 			var my_lng = 0;
 			var myLocation = new google.maps.LatLng(my_lat, my_lng); 
 			var locationMarker; 
+			var info; 
 
 			function init() {
 				map = new google.maps.Map(document.getElementById('map'), {
@@ -44,7 +45,15 @@
 					map: map,
 					title: 'My Location',
 					icon: img,
-					label: 'LisaLytle'
+				});
+
+				//Source: https://developers.google.com/maps/documentation/javascript/infowindows
+				info = new google.maps.InfoWindow({
+					content: 'LisaLytle'
+				});
+
+				locationMarker.addListener('click', function(){
+					info.open(map, locationMarker); 
 				});
 			}
 
