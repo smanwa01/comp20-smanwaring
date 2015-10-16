@@ -36,10 +36,12 @@
 				myLocation = new google.maps.LatLng(my_lat, my_lng);
 				map.panTo(myLocation); 
 
+				var img = '8th notes.png';
 				locationMarker = new google.maps.Marker({
 					position: myLocation,
 					map: map,
-					title: 'My Location'
+					title: 'My Location',
+					icon: img
 				});
 			}
 
