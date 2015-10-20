@@ -1,7 +1,7 @@
 
 //Referenced: http://www.w3schools.com/json/json_http.asp 
 function parse() {
-	var xhr = new XLMHttpRequest(); 
+	var xhr = new XMLHttpRequest(); 
 	var fileURL = "data.json"; 
 
 	xhr.open("GET", fileURL, true); 
