@@ -1,16 +1,19 @@
-// Your JavaScript goes here...
 
 //Referenced: http://www.w3schools.com/json/json_http.asp 
 function parse() {
-	var req = new XLMHttpRequest(); 
+	var xhr = new XLMHttpRequest(); 
 	var fileURL = "data.json"; 
 
-	req.onreadystatechange = function() {
-		if (req.readyState == 4 && req.status == 200) {
-			parsedData = JSON.parse(req.responseText);
-			print(parsedData); 
+	xhr.open("GET", fileURL, true); 
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			parsedData = JSON.parse(xhr.responseText);
+			console.log(parsedData); 
+			//print(parsedData); 
 		}
 	} 
+	xhr.send(null); 
 }
 
 
