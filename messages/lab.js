@@ -10,7 +10,7 @@ function parse() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			parsedData = JSON.parse(xhr.responseText);
 			console.log(parsedData); 
-			//print(parsedData); 
+			print(parsedData); 
 		}
 	} 
 	xhr.send(null); 
@@ -20,6 +20,6 @@ function parse() {
 function print(parsedData) {
 	elem = document.getElementById("messages");
 	for (count = 0; count < parsedData.length; count++) {
-		
+		elem.innerHTML = "<p>" + parsedData[count]["content"] + " " + parsedData[count]["username"] + "</p";
 	}
 }
