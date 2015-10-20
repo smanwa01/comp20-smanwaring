@@ -2,7 +2,7 @@
 //Referenced: http://www.w3schools.com/json/json_http.asp 
 function parse() {
 	var xhr = new XMLHttpRequest(); 
-	var fileURL = "data.json"; 
+	var fileURL = "http://messagehub.herokuapp.com/messages.json"; 
 
 	xhr.open("GET", fileURL, true); 
 
