@@ -19,7 +19,7 @@ function parse() {
 
 function print(parsedData) {
 	elem = document.getElementById("messages");
-	for (count = 0; count <= parsedData.length; count++) {
+	for (count = 1; count < parsedData.length; count++) {
 		elem.innerHTML = "<p>" + parsedData[count]["content"] + " " + parsedData[count]["username"] + "</p";
 	}
 }
