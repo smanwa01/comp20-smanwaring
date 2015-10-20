@@ -1,1 +1,9 @@
-/* Your CSS here... */
+#messages p {
+	background-color: #78E8BF; 
+	font-family: helvetica; 
+	font-size: 18px; 
+	display: inline block; 
+	width: 30%; 
+	border-radius: 15px; 
+	padding: 5px; 
+}

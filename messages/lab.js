@@ -8,19 +8,17 @@ function parse() {
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			parsedData = JSON.parse(xhr.responseText);
-			console.log(parsedData); 
+			parsedData = JSON.parse(xhr.responseText); 
 			print(parsedData); 
 		}
 	} 
 	xhr.send(null); 
 }
 
-
 function print(parsedData) {
 	elem = document.getElementById("messages");
-	for (count = 1; count < parsedData.length; count++) {
-		console.log("entering loop!"); 
-		elem.innerHTML = "<p>" + parsedData[count]["content"] + " " + parsedData[count]["username"] + "</p";
+	for (count = 0; count < parsedData.length; count++) {
+		elem.innerHTML += "<p>" + parsedData[count]["content"] + " - " + 
+		parsedData[count]["username"] + "</p";
 	}
 }
