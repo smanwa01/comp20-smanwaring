@@ -18,7 +18,7 @@
 				map = new google.maps.Map(document.getElementById('map'), {
  					center: myLocation,
 					zoom: 15 }); 
-				getCurrentLocation(); 
+				getCurrentLocation();  
 				parseData(); 
 			}
 
@@ -29,10 +29,11 @@
  						my_lng = position.coords.longitude;
  						showMyPosition(); 
 					}); 	
+					
 				}
 				else {
 					alert("Sorry, geolocation is not supported on your browser.");
-				}
+				} 
 			}
 
 			function showMyPosition() {
@@ -58,7 +59,7 @@
 				});
 			}
 
-			function parseData () {
+			function parseData() {
 				xhr = new XMLHttpRequest(); 
 				var url = 'https://secret-about-box.herokuapp.com/sendLocation'; 
 
@@ -80,7 +81,9 @@
 
 			function showMap(locationData){
 				for (count = 0; count < locationData.length; count++){
-					loc = new google.maps.LatLng(locationData[count]["lat"], locationData[count]["lng"]);
+					their_lat = locationData[count]["lat"];
+					their_lng = locationData[count]["lng"]; 
+					loc = new google.maps.LatLng(their_lat, their_lng);
 					theirMarker = new google.maps.Marker({
 						position: loc,
 						map: map,
@@ -88,7 +91,9 @@
 
 					login = locationData[count]["login"];
 					msg = locationData[count]["message"];
-					distanceAway = haversineDistance(loc, myLocation, true);
+					console.log('lat:' + my_lat); 
+
+					distanceAway = haversineDistance([their_lng, their_lat], [my_lng, my_lat], true);
 
 					contentString = '<p>' + 'Login:' + ' ' + login + '</p>' + '<p>' + 'Message:' + ' ' + msg + '</p>' + '<p>' + 'Miles away from me:' + ' ' + distanceAway + '</p>';
 					theirInfo = new google.maps.InfoWindow({
@@ -133,7 +138,7 @@
 
 				if(isMiles) d /= 1.60934;
 
-				return d;
+				return d; 
 			}
 		</script> 
 	</head>
