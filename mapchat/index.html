@@ -74,7 +74,9 @@
 						//showMap(locationData); 
 					}
 				}
-				xhr.send(encodeURIComponent("login=LisaLytle&lat=" + my_lat + "&lng=" + my_lng + "&message=Hey! This is my message.")); 
+				//Source: http://stackoverflow.com/questions/4276226/ajax-xmlhttprequest-post
+				var params = "login=LisaLytle&lat=" + encodeURIComponent(my_lat) + "&lng=" + encodeURIComponent(my_lng) + "&message=" + encodeURIComponent('Hey! This is my msg.');
+				xhr.send(params); 
 			}
 
 			function showMap(locationData){
