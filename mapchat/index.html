@@ -12,6 +12,7 @@
 			var locationMarker; 
 			var info; 
 			var xhr; 
+			var locationData; 
 
 			function init() {
 				map = new google.maps.Map(document.getElementById('map'), {
@@ -26,7 +27,7 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
  						my_lat = position.coords.latitude
  						my_lng = position.coords.longitude;
- 						showMap(); 
+ 						showMyPosition(); 
 					}); 	
 				}
 
@@ -35,10 +36,9 @@
 				}
 			}
 
-			function showMap() {
+			function showMyPosition() {
 				myLocation = new google.maps.LatLng(my_lat, my_lng);
 				map.panTo(myLocation); 
-
 				var img = '8th notes.jpg';
 				
 				//Source: https://developers.google.com/maps/documentation/javascript/markers
@@ -65,10 +65,20 @@
 
 				xhr.open("POST", url, true); 
 				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+				
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState == 4 && xhr.status == 200) {
+						data = xhr.responseText; 
+						locationData = JSON.parse(data); 
+						console.log(locationData); //REMOVE 
+						//showMap(locationData); 
+					}
+				}
+				xhr.send(encodeURIComponent("login=LisaLytle&lat=" + my_lat + "&lng=" + my_lng + "&message=Hey! This is my message.")); 
+			}
 
-				//onreadystate - call get current location? Make so more general? 
+			function showMap(locationData){
 
-				xhr.send("login=LisaLytle&lat=YOUR_LATITUDE&lng=YOUR_LONGITUDE&message=YOUR_MESSAGE"); //?????
 			}
 		</script> 
 	</head>
