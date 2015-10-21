@@ -1,2 +1,2 @@
-#README file for Assignment 2
-#Steven Manwaring 
+README file for Assignment 2
+Steven Manwaring 

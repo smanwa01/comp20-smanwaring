@@ -89,17 +89,24 @@
 					});
 
 					login = locationData[count]["login"];
+					msg = locationData[count]["message"];
+					//figure out distance away from me.... 
 
-					contentString = '<p>' + 'Login:' + login + '</p>'; 
+					contentString = '<p>' + 'Login:' + login + '</p>' + '<p>' + 'Message:' + msg + '</p>';
 					theirInfo = new google.maps.InfoWindow({
 						content: contentString
 					});
 
-					theirMarker.addListener('click', function(){
-						theirInfo.open(map, theirMarker); 
-					}); 
-				}
+					handle_event(theirMarker, theirInfo);
+				}			
 			}
+
+			function handle_event(theirMarker, theirInfo){
+				theirMarker.addListener('click', function(){
+				theirInfo.open(map, theirMarker); 
+				}); 
+			}	
+
 		</script> 
 	</head>
 
