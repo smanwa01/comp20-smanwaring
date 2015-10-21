@@ -42,7 +42,7 @@
 				var img = '8th notes.jpg';
 				
 				//Source: https://developers.google.com/maps/documentation/javascript/markers
-				locationMarker = new google.maps.Marker({
+				myMarker = new google.maps.Marker({
 					position: myLocation,
 					map: map,
 					title: 'My Location',
@@ -54,8 +54,8 @@
 					content: 'LisaLytle'
 				});
 
-				locationMarker.addListener('click', function(){
-					info.open(map, locationMarker); 
+				myMarker.addListener('click', function(){
+					info.open(map, myMarker); 
 				});
 			}
 
@@ -71,16 +71,34 @@
 						data = xhr.responseText; 
 						locationData = JSON.parse(data); 
 						console.log(locationData); //REMOVE 
-						//showMap(locationData); 
+						showMap(locationData); 
 					}
 				}
 				//Source: http://stackoverflow.com/questions/4276226/ajax-xmlhttprequest-post
 				var params = "login=LisaLytle&lat=" + encodeURIComponent(my_lat) + "&lng=" + encodeURIComponent(my_lng) + "&message=" + encodeURIComponent('Hey! This is my msg.');
+				
 				xhr.send(params); 
 			}
 
 			function showMap(locationData){
+				for (count = 0; count < locationData.length; count++){
+					loc = new google.maps.LatLng(locationData[count]["lat"], locationData[count]["lng"]);
+					theirMarker = new google.maps.Marker({
+						position: loc,
+						map: map,
+					});
 
+					login = locationData[count]["login"];
+
+					contentString = '<p>' + 'Login:' + login + '</p>'; 
+					theirInfo = new google.maps.InfoWindow({
+						content: contentString
+					});
+
+					theirMarker.addListener('click', function(){
+						theirInfo.open(map, theirMarker); 
+					}); 
+				}
 			}
 		</script> 
 	</head>
