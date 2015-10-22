@@ -29,7 +29,6 @@
  						my_lng = position.coords.longitude;
  						showMyPosition(); 
 					}); 	
-					
 				}
 				else {
 					alert("Sorry, geolocation is not supported on your browser.");
@@ -72,9 +71,12 @@
 						locationData = JSON.parse(data); 
 						showMap(locationData); 
 					}
+					else if (xhr.readyState == 4 && xhr.status !=200){
+						alert('Could not load data'); 
+					}
 				}
 				//Source: http://stackoverflow.com/questions/4276226/ajax-xmlhttprequest-post
-				var params = "login=LisaLytle&lat=" + encodeURIComponent(my_lat) + "&lng=" + encodeURIComponent(my_lng) + "&message=" + encodeURIComponent('Hey! This is my msg.');
+				var params = "login=LisaLytle&lat=" + encodeURIComponent(my_lat) + "&lng=" + encodeURIComponent(my_lng) + "&message=" + encodeURIComponent('Hello World!');
 				
 				xhr.send(params); 
 			}
@@ -96,9 +98,7 @@
 					distanceAway = haversineDistance([their_lng, their_lat], [my_lng, my_lat], true);
 
 					contentString = '<p>' + 'Login:' + ' ' + login + '</p>' + '<p>' + 'Message:' + ' ' + msg + '</p>' + '<p>' + 'Miles away from me:' + ' ' + distanceAway + '</p>';
-					theirInfo = new google.maps.InfoWindow({
-						content: contentString
-					});
+					theirInfo = new google.maps.InfoWindow({content: contentString});
 
 					handle_event(theirMarker, theirInfo); 
 				}			
