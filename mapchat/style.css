@@ -3,7 +3,14 @@
 html, body { 
 	height: 100%; 
 	margin: 0; 
-	padding: 0; 
+	padding-left: 30px;
+	padding-right: 30px; 
+	background-color: #E5F2E0; 
+}
+
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
 }
 
 #map {

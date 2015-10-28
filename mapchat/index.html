@@ -3,6 +3,7 @@
 	<head>
 		<title>Assignment 2 - Comp 20</title> 
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script>
 			var map; 
@@ -18,21 +19,18 @@
 				map = new google.maps.Map(document.getElementById('map'), {
  					center: myLocation,
 					zoom: 15 }); 
-				getCurrentLocation();  
-				parseData(); 
-			}
-
-			function getCurrentLocation(){
+ 
 				if (navigator.geolocation){
 					navigator.geolocation.getCurrentPosition(function(position) {
  						my_lat = position.coords.latitude
  						my_lng = position.coords.longitude;
  						showMyPosition(); 
+ 						parseData();
 					}); 	
 				}
 				else {
 					alert("Sorry, geolocation is not supported on your browser.");
-				} 
+				}  
 			}
 
 			function showMyPosition() {
@@ -93,11 +91,9 @@
 
 					login = locationData[count]["login"];
 					msg = locationData[count]["message"];
-					console.log('lat:' + my_lat); 
-
 					distanceAway = haversineDistance([their_lng, their_lat], [my_lng, my_lat], true);
 
-					contentString = '<p>' + 'Login:' + ' ' + login + '</p>' + '<p>' + 'Message:' + ' ' + msg + '</p>' + '<p>' + 'Miles away from me:' + ' ' + distanceAway + '</p>';
+					contentString = '<p>' + 'Login:' + ' ' + login + '</p>' + '<p>' + 'Message:' + ' ' + msg + '</p>' + '<p>' + 'Miles away from me:' + ' ' + distanceAway + ' miles' + '</p>';
 					theirInfo = new google.maps.InfoWindow({content: contentString});
 
 					handle_event(theirMarker, theirInfo); 
@@ -144,6 +140,7 @@
 	</head>
 
 	<body onload ="init()">
+		<h1>Mapchat</h1>
 		<div id ="map"></div> 
 	</body>
 </html>
