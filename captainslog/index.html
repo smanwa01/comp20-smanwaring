@@ -6,7 +6,29 @@
 	<title>Captain's Log</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
-	  // Your work will be done here...
+		$(document).ready(function(){
+			//http://stackoverflow.com/questions/22955975/press-the-enter-key-in-a-text-box-with-jquery
+			$('#msg').keydown(function(e){
+    			if(e.keyCode == 13){
+       				txt = $('#msg').val(); 
+       				storeData(txt);  
+    			}
+			});
+	  	}); 
+
+	  	function storeData(txt){
+	  		d = new Date();
+	  		d.getTime(); 
+	  		date = d.toString();   
+	  		localStorage[date] = txt;
+	  		loadData(); 
+	  	}
+
+	  	function loadData(){
+	  		for (key in localStorage){
+	  			$('#log').prepend('<p>' + key + ' - ' + localStorage[key] + '</p>'); 
+	  		}
+	  	}
 	</script>
 </head>
 
