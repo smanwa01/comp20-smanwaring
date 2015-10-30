@@ -25,9 +25,9 @@
 	  	}
 
 	  	function loadData(){
-	  		for (key in localStorage){
-	  			$('#log').prepend('<p>' + key + ' - ' + localStorage[key] + '</p>'); 
-	  		}
+	  		$.each(localStorage, function(key, value){
+	  			$('#log').prepend('<p>' + key + ' - ' + value + '</p>'); 
+			});
 	  	}
 	</script>
 </head>
