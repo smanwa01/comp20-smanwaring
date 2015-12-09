@@ -5,6 +5,11 @@ img {
 	display: inline-block;
 }
 
+#large_img img {
+	width:100%;
+	height: auto;
+}
+
 body {
 	padding-left: 5%;
 	padding-right: 5%; 

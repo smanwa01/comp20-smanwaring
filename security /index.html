@@ -15,27 +15,31 @@
 	<h2>Methodology</h2>
 		<p>I began my testing using the "black box" method.  I used Postman and cURL for this portion of the assignment.  I then examined my partner's code to find additional areas where security risks might exist, and further targeted those areas specifically to discover if they contained vulnerabilities.</p>
 	<h2>Abstract of Findings</h2>
-		<p>Overall, my partner's application is actually pretty secure.  The application does a good job of validating logins, so that I was unable to find any security vulnerabilities with the <code>/latest.json</code> Get API.  Neither cross site scripting nor sql injection worked here.  The application also does an excellent job of ensuring that 'lat' and 'lng' are floats.  As a result, the only area where cross site scripting was possible was in the 'message' field of the <code>/sendLocation</code> Post API.</p>
+		<p>Overall, my partner's application is actually pretty secure.  The application does a good job of validating logins, so that I was unable to find any security vulnerabilities with the <code>/latest.json</code> Get API.  Neither cross site scripting nor sql injection worked here.  The application also does an excellent job of ensuring that 'lat' and 'lng' are floats, thus preventing injection of JavaScript code in these fields.  As a result, the only area where cross site scripting was possible was in the 'message' field of the <code>/sendLocation</code> Post API.</p>
 	<h2>Issues found</h2>
 		<ol>
 			<li><p><strong>Cross Site Scripting</strong></p>
 			<ul>
 				<li>Affects POST /sendLocation</li>
-				<li>Severity: <strong>HIGH</strong> Anyone can submit javascript code as their "message" because user input is not sanitized.  Furthermore, any malicious changes made to the page though cross site scripting are visible to all users of the application, and may adversly affect their usage of the website.</li>
-				<li>I found this security vulnerability during the "black box" phase of my testing.  Using Postman to post to the server, I sent a short script that sets an alert box to display anytime a user visits the application site.  However, this particular script does not seem to affect my partner's mapchap site.</li>
+				<li>Severity: <strong>HIGH</strong> Anyone can submit javascript code as their "message" because user input is not sanitized.  The application checks if the message is null, but no further validation is performed. Furthermore, any malicious changes made to the page though cross site scripting are persistent (they are stored in the database), visible to all users of the application, and may adversely affect their usage of the website.</li>
+				<li>I found this security vulnerability during the "black box" phase of my testing.  Using Postman to post to the server, I sent a short script that sets an alert box to display anytime a user visits the application site.  However, this particular script does not directly affect my partner's mapchap site.</li>
 				<img src="xss1.png" alt='xss alert' title='xss alert'>
-				<li>I was also able to conduct another XSS attack that <strong>did</strong> affect my partner's mapchat site (as well as their assignment 3 site), by sending <code>onmouseover=alert('XSS!!')CLICK HERE!</code></li> in the "message" field.  Thus, when a user clicks on this entry on the map, a maliciously sent alert pops up.
+				<li>I was, however, able to conduct a different XSS attack that <strong>did</strong> affect my partner's mapchat site (as well as their assignment 3 site), by sending <code>onmouseover=alert('XSS!!')CLICK HERE!</code></li> in the "message" field.  Thus, when a user clicks on this entry on the map, a malicious alert pops up.
 				<img src="xss2.png" alt='before clicking' title='example 1'>
 				<img src="xss3.png" alt='after clicking' title='example 2'>
-				<li>These vulnerabilities could be resolved by escaping certain characters in user input.  Characters such as the 'greater than' and 'less than' symbols are especially important to deal with, as doing so would have prevent the attack I was able to conduct with relative ease.</li>
+				<li>These vulnerabilities could be resolved by escaping certain characters in user input.  Characters such as the 'greater than' and 'less than' symbols are especially important to deal with, as doing so would have prevented the attack I was able to conduct with relative ease.  This could also be accomplished using the sanitize functions in the npm Validator package.</li>
 			</ul>
 			</li>
 
 			<li><p><strong>Cross Origin Resource Sharing Wildcard ('*')</strong></p>
 			<ul>
 				<li>Affects POST and GET API's</li>
-				<li>Severity: <strong>MEDIUM</strong> This is an insecure method, in that it allows any user from any domain to make an XMLHttp Post Request and submit data to the database, provided they have an accurate login.  Likewise, any user from any domain that happens to have an accurate login can use the Get method to retrieve data.  While the data in this particular application is not especially private, as good programming practice, cross origin resource sharing should really be limited to a specific domain.  In this case, for both the Get and Post methods, cross origin resource sharing should be limited to the mapchat Github pages domain.  This can be easily fixed by modifying the response headers to only accept data from a specific domain.  I discovered this problem by examining my partner's code. 
-				</li>
+				<li>Severity: <strong>MEDIUM</strong> This is an insecure method, in that it allows any user from any domain to make an XMLHttp Post Request and submit data to the database, provided they have an accurate login.  Likewise, any user from any domain that happens to have an accurate login can use the Get method to retrieve data.  For example, using Postman or cURL, I was able to make Get and Post requests from my computer without having any afiliation with the mapchat/tuftsdev.github.io domain.</li>  
+				<p>HTTP Post from any domain:</p>
+				<div id=large_img> <img src="beforecors.png" alt='before post'> </div> 
+				<p>HTTP Get from any domain (the post request went through!):</p>
+				<div id=large_img> <img src="aftercors.png" alt='after post'> </div> 
+				<li>While the data in this particular application is not especially private, as good programming practice, cross origin resource sharing should really be limited to a specific domain.  In this case, for both the Get and Post methods, cross origin resource sharing should be limited to the mapchat Github pages domain.  This can be easily fixed by modifying the response headers to only accept data from a specific domain.  I discovered this problem during my "black box" testing, and confirmed it by examining my partner's code.</li>
 			</ul>
 			</li>
 		</ol>
