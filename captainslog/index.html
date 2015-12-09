@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Captain's Log</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			//http://stackoverflow.com/questions/22955975/press-the-enter-key-in-a-text-box-with-jquery
+			
+			loadData(); //load what is already in local storage
+			
+			$('#msg').keydown(function(e){
+    			if(e.keyCode == 13){
+       				txt = $('#msg').val(); 
+       				storeData(txt);  
+       				$('#msg').val(''); //clear input box for next input 
+    			}
+			});
+	  	}); 
+
+	  	function storeData(txt){
+	  		d = new Date(); 
+	  		d.getTime(); 
+	  		date = d.toString();   
+	  		localStorage[date] = txt;
+	  		$('#log').prepend('<p>' + date + ' - ' + localStorage[date] + '</p>'); 
+	  	}
+
+	  	function loadData(){
+	  		$.each(localStorage, function(key, value){
+	  			$('#log').prepend('<p>' + key + ' - ' + value + '</p>'); 
+			});
+	  	}
+	</script>
+</head>
+
+<body>
+	<h1>Captain's Log</h1>
+	<h3>New entry: <input type="text" id="msg" name="msg" size="30" /></h3>
+	<div id="log"></div>
+</body>
+</html>
