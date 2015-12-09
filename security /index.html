@@ -36,9 +36,9 @@
 				<li>Affects POST and GET API's</li>
 				<li>Severity: <strong>MEDIUM</strong> This is an insecure method, in that it allows any user from any domain to make an XMLHttp Post Request and submit data to the database, provided they have an accurate login.  Likewise, any user from any domain that happens to have an accurate login can use the Get method to retrieve data.  For example, using Postman or cURL, I was able to make Get and Post requests from my computer without having any afiliation with the mapchat/tuftsdev.github.io domain.</li>  
 				<p>HTTP Post from any domain:</p>
-				<div id=large_img> <img src="beforecors.png" alt='before post'> </div> 
+				<div id="large_img"> <img src="beforecors.png" alt='before post'> </div> 
 				<p>HTTP Get from any domain (the post request went through!):</p>
-				<div id=large_img> <img src="aftercors.png" alt='after post'> </div> 
+				<div id="large_img"> <img src="aftercors.png" alt='after post'> </div> 
 				<li>While the data in this particular application is not especially private, as good programming practice, cross origin resource sharing should really be limited to a specific domain.  In this case, for both the Get and Post methods, cross origin resource sharing should be limited to the mapchat Github pages domain.  This can be easily fixed by modifying the response headers to only accept data from a specific domain.  I discovered this problem during my "black box" testing, and confirmed it by examining my partner's code.</li>
 			</ul>
 			</li>
