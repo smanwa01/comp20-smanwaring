@@ -1,0 +1,22 @@
+img {
+	width: 50%;
+	height: auto;
+	padding-top: 5px; 
+	display: inline-block;
+}
+
+#large_img img {
+	width:100%;
+	height: auto;
+}
+
+body {
+	padding-left: 5%;
+	padding-right: 5%; 
+	font-family: helvetica; 
+	font-size: 18px; 
+}
+
+h1 {
+	text-align: center; 
+}
